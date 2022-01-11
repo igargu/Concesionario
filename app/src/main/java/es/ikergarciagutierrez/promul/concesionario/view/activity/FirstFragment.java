@@ -1,4 +1,4 @@
-package es.ikergarciagutierrez.promul.concesionario;
+package es.ikergarciagutierrez.promul.concesionario.view.activity;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import es.ikergarciagutierrez.promul.concesionario.R;
 import es.ikergarciagutierrez.promul.concesionario.databinding.FragmentFirstBinding;
 
 public class FirstFragment extends Fragment {

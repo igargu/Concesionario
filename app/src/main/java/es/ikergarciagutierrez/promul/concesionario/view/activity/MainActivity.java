@@ -1,4 +1,4 @@
-package es.ikergarciagutierrez.promul.concesionario;
+package es.ikergarciagutierrez.promul.concesionario.view.activity;
 
 import android.os.Bundle;
 
@@ -13,6 +13,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import es.ikergarciagutierrez.promul.concesionario.R;
 import es.ikergarciagutierrez.promul.concesionario.databinding.ActivityMainBinding;
 
 import android.view.Menu;
