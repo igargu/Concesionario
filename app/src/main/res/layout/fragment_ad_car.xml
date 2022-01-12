@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activity.AdCarFragment"
+    android:background="@color/secondary">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tvAdTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tvAdTitle"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/tvAdPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tvAdPrice"
+                android:textColor="@color/white"
+                tools:ignore="TextContrastCheck,TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/tvAdReference"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tvAdReference"
+                android:textColor="@color/white" />
+
+            <ImageView
+                android:id="@+id/ivAd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/contentDescription_ivAd"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/tvAdDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tvAdDescription"
+                android:textColor="@color/white" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tvAdLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tvAdLocation"
+                app:startIconDrawable="@drawable/ic_baseline_location_on_24"
+                app:startIconTint="@color/primary" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tvAdFuel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tvAdFuel"
+                app:startIconDrawable="@drawable/ic_baseline_local_gas_station_24"
+                app:startIconTint="@color/primary" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tvAdKm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tvAdKm"
+                app:startIconDrawable="@drawable/ic_baseline_speed_24"
+                app:startIconTint="@color/primary" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tvAdYear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tvAdYear"
+                app:startIconDrawable="@drawable/ic_baseline_calendar_today_24"
+                app:startIconTint="@color/primary" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tvAdTransmission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tvAdTransmission"
+                app:startIconDrawable="@drawable/ic_baseline_alt_route_24"
+                app:startIconTint="@color/primary" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tvAdColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tvAdColor"
+                app:startIconDrawable="@drawable/ic_baseline_color_lens_24"
+                app:startIconTint="@color/primary" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tvAdPower"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tvAdPower"
+                app:startIconDrawable="@drawable/ic_baseline_directions_car_24"
+                app:startIconTint="@color/primary" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tvAdNumDoors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tvAdNumDoors"
+                app:startIconDrawable="@drawable/ic_baseline_sensor_door_24"
+                app:startIconTint="@color/primary" />
+
+            <TextView
+                android:id="@+id/tvAdLinkPage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tvAdLinkPage"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

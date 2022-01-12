@@ -3,26 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/AdCarListFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="es.ikergarciagutierrez.promul.concesionario.view.activity.FirstFragment"
+        android:id="@+id/AdCarListFragment"
+        android:name="es.ikergarciagutierrez.promul.concesionario.view.activity.AdCarListFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/fragment_ad_car_list">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_AdCarListFragment_to_AdCarFragment"
+            app:destination="@id/AdCarFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="es.ikergarciagutierrez.promul.concesionario.view.activity.SecondFragment"
+        android:id="@+id/AdCarFragment"
+        android:name="es.ikergarciagutierrez.promul.concesionario.view.activity.AdCarFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        tools:layout="@layout/fragment_ad_car">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_AdCarFragment_to_AdCarListFragment"
+            app:destination="@id/AdCarListFragment" />
     </fragment>
 </navigation>

@@ -8,7 +8,7 @@
     android:layout_height="wrap_content"
     android:background="@color/secondary">
 
-    <com.google.android.material.textfield.TextInputLayout
+    <TextView
         android:id="@+id/tvAdCarTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -17,6 +17,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/tvAdCarTitle"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/tvAdCarPrice"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <TextView
         android:id="@+id/tvAdCarPrice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -33,6 +34,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/tvAdCarPrice"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/ivAdCar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +69,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:startIconDrawable="@drawable/ic_baseline_location_on_24" />
+        app:startIconDrawable="@drawable/ic_baseline_location_on_24"
+        app:startIconTint="@color/primary" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tvAdCarFuel"
@@ -82,7 +85,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:startIconDrawable="@drawable/ic_baseline_local_gas_station_24" />
+        app:startIconDrawable="@drawable/ic_baseline_local_gas_station_24"
+        app:startIconTint="@color/primary" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tvAdCarKm"
@@ -96,7 +100,8 @@
         app:layout_constraintBottom_toTopOf="@+id/tvAdCarYear"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:startIconDrawable="@drawable/ic_baseline_speed_24" />
+        app:startIconDrawable="@drawable/ic_baseline_speed_24"
+        app:startIconTint="@color/primary" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tvAdCarYear"
@@ -110,6 +115,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:startIconDrawable="@drawable/ic_baseline_calendar_today_24" />
+        app:startIconDrawable="@drawable/ic_baseline_calendar_today_24"
+        app:startIconTint="@color/primary" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
