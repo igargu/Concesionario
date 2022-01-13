@@ -37,6 +37,10 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     implementation 'androidx.navigation:navigation-fragment:2.3.5'
     implementation 'androidx.navigation:navigation-ui:2.3.5'
+    implementation 'mysql:mysql-connector-java:5.1.49'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:1.8.0'
+    implementation files('picasso')
+    implementation 'com.squareup.picasso:picasso:2.71828'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'

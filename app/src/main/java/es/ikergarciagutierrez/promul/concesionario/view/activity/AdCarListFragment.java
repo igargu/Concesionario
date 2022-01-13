@@ -37,14 +37,14 @@ public class AdCarListFragment extends Fragment {
     }
 
     private void initialize() {
-        RecyclerView recyclerView = binding.rvPokemon;
+        RecyclerView recyclerView = binding.rvCar;
         recyclerView.setLayoutManager(new LinearLayoutManager(getParentFragment().getContext()));
+
+        //VideoGameViewModel videoGameVM = new ViewModelProvider(this).get(VideoGameViewModel.class);
+        CarAdapter carAdapter = new CarAdapter(getContext());
+
+        recyclerView.setAdapter(carAdapter);
         /*
-        VideoGameViewModel videoGameVM = new ViewModelProvider(this).get(VideoGameViewModel.class);
-        CarAdapter videoGameAdapter = new CarAdapter(getContext());
-
-        recyclerView.setAdapter(videoGameAdapter);
-
         LiveData<List<VideoGame_VideoGameConsole>> videoGameList = videoGameVM.getAllVideoGames();
         videoGameList.observe(getViewLifecycleOwner(), videoGames -> {
             videoGameAdapter.setVideoGameList(videoGames);

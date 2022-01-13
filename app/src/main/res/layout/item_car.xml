@@ -49,7 +49,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:contentDescription="@string/contentDescription_ivAdCar"
-        app:layout_constraintBottom_toTopOf="@+id/tvAdCarLocation"
+        app:layout_constraintBottom_toTopOf="@+id/tilAdCarLocation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +57,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tvAdCarLocation"
+        android:id="@+id/tilAdCarLocation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -65,15 +65,31 @@
         android:layout_marginBottom="16dp"
         android:text="@string/tvAdCarLocation"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvAdCarFuel"
+        app:layout_constraintBottom_toTopOf="@+id/tilAdCarFuel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:startIconDrawable="@drawable/ic_baseline_location_on_24"
-        app:startIconTint="@color/primary" />
+        app:startIconTint="@color/primary">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etAdCarLocation"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/dark_secondary"
+            android:textColor="@color/white"
+            android:textColorLink="@color/secondary"
+            android:textSize="18sp"
+            tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tvAdCarFuel"
+        android:id="@+id/tilAdCarFuel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -81,15 +97,29 @@
         android:layout_marginBottom="16dp"
         android:text="@string/tvAdCarFuel"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvAdCarKm"
+        app:layout_constraintBottom_toTopOf="@+id/tilAdCarKm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:startIconDrawable="@drawable/ic_baseline_local_gas_station_24"
-        app:startIconTint="@color/primary" />
+        app:startIconTint="@color/primary" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etAdCarFuel"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/dark_secondary"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tvAdCarKm"
+        android:id="@+id/tilAdCarKm"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -97,14 +127,29 @@
         android:layout_marginBottom="16dp"
         android:text="@string/tvAdCarKm"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvAdCarYear"
+        app:layout_constraintBottom_toTopOf="@+id/tilAdCarYear"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:startIconDrawable="@drawable/ic_baseline_speed_24"
-        app:startIconTint="@color/primary" />
+        app:startIconTint="@color/primary" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etAdCarKm"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/dark_secondary"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tvAdCarYear"
+        android:id="@+id/tilAdCarYear"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -116,6 +161,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:startIconDrawable="@drawable/ic_baseline_calendar_today_24"
-        app:startIconTint="@color/primary" />
+        app:startIconTint="@color/primary" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etAdCarYear"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/dark_secondary"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
