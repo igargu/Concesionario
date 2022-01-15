@@ -33,5 +33,8 @@
     <string name="tvAdPower">Power</string>
     <string name="tvAdNumDoors">numDoors</string>
     <string name="tvAdLinkPage">linkPage</string>
-    <string name="tvMainTitle">Concesionario El Cigüeñal</string>
+    <string name="tvMainTitle"><u>Concesionario El Cigüeñal</u></string>
+    <string name="menuAccount">Mi cuenta</string>
+    <string name="menuSettings">Ajustes</string>
+    <string name="menuFavs">Favoritos</string>
 </resources>

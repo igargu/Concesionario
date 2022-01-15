@@ -49,6 +49,17 @@ public class AdCarListFragment extends Fragment {
         videoGameList.observe(getViewLifecycleOwner(), videoGames -> {
             videoGameAdapter.setVideoGameList(videoGames);
         });*/
+
+        carAdapter.setOnClickListener(view -> {
+            Bundle bundle = new Bundle();/*
+            bundle.putSerializable("id_VideoGameName",videoGameAdapter.getItem(recyclerView.getChildAdapterPosition(view)).videoGame.name);
+            bundle.putSerializable("id_VideoGameDeveloper",videoGameAdapter.getItem(recyclerView.getChildAdapterPosition(view)).videoGame.developer);
+            bundle.putSerializable("id_VideoGameConsole",videoGameAdapter.getItem(recyclerView.getChildAdapterPosition(view)).videoGame.idVideoGameConsole);
+            bundle.putSerializable("id_VideoGameGenre",videoGameAdapter.getItem(recyclerView.getChildAdapterPosition(view)).videoGame.genre);
+            bundle.putSerializable("id_VideoGameReleaseDate",videoGameAdapter.getItem(recyclerView.getChildAdapterPosition(view)).videoGame.releaseDate);
+            bundle.putSerializable("id_VideoGameImageUrl",videoGameAdapter.getItem(recyclerView.getChildAdapterPosition(view)).videoGame.imageUrl);*/
+            NavHostFragment.findNavController(AdCarListFragment.this).navigate(R.id.action_AdCarListFragment_to_AdCarFragment,bundle);
+        });
     }
 
     @Override

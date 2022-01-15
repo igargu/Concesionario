@@ -1,6 +1,7 @@
 package es.ikergarciagutierrez.promul.concesionario.view.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -31,12 +32,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-
+/*
     private static final String URL = "jdbc:mysql://146.59.237.189:3306/dam208_iggconcesionario";
     private static final String USER = "dam208_igg";
     private static final String PASSWORD = "dam208_igg";
 
-    private String title, price, location, images, fuel, km, year;
+    private String title, price, location, images, fuel, km, year;*/
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
@@ -50,36 +51,35 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.toolbar);
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
-        new InfoAsyncTask().execute();
+        //new InfoAsyncTask().execute();
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.menuAccount) {
+            Intent intent = new Intent(this, MenuAccountActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.menuFavs) {
+            Intent intent = new Intent(this, MenuFavsActivity.class);
+            startActivity(intent);
+        } else if(id == R.id.menuSettings) {
+            Intent intent = new Intent(this, MenuSettingsActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
     }
-
+/*
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -127,5 +127,5 @@ public class MainActivity extends AppCompatActivity {
                 year = result.get("year");
             }
         }
-    }
+    }*/
 }

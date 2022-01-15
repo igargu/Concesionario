@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Concesionario">
         <activity
+            android:name=".view.activity.MenuSettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.MenuFavsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activity.MenuAccountActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.activity.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
