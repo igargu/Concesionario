@@ -1,10 +1,12 @@
 package es.ikergarciagutierrez.promul.concesionario.view.activity;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,24 +18,53 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.squareup.picasso.Picasso;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
 
 import es.ikergarciagutierrez.promul.concesionario.R;
 import es.ikergarciagutierrez.promul.concesionario.databinding.FragmentAdCarBinding;
 
+/**
+ * Esta clase define el fragmento de cada anuncio del concesionario
+ */
 public class AdCarFragment extends Fragment {
+
+    /**
+     * Campos de la clase
+     */
+    private static final String URL = "jdbc:mysql://146.59.237.189:3306/dam208_iggconcesionario";
+    private static final String USER = "dam208_igg";
+    private static final String PASSWORD = "dam208_igg";
 
     private FragmentAdCarBinding binding;
 
     private TextView tvAdTitle, tvAdPrice, tvAdReference, tvAdDescription, tvAdLinkPage;
     private ImageView ivAd;
-    private String imageLink, pageLink;
+    private String imageLink;
     private EditText etAdLocation, etAdFuel, etAdKm, etAdYear,
-                        etAdTransmission, etAdColor, etAdPower, etAdNumDoors;
+            etAdTransmission, etAdColor, etAdPower, etAdNumDoors;
     private Button btLeft, btRight;
 
+    private String title, description, reference, price, location, images = "",
+            linkPage, fuel, km, transmission, color, power, numDoors, year;
+
+    private int numImg = 1;
+
+    /**
+     * Constructor para la vista del fragmento
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -45,77 +76,50 @@ public class AdCarFragment extends Fragment {
 
     }
 
+    /**
+     * Método que inicializa la vista del fragmento
+     *
+     * @param view
+     * @param savedInstanceState
+     */
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         initialize();
+        new InfoAsyncTask().execute();
     }
 
+    /**
+     * Método que inicializa los componentes del layout
+     */
     private void initialize() {
 
         tvAdTitle = binding.tvAdTitle;
-        tvAdTitle.setText("KIA - eSoul");
-
         tvAdPrice = binding.tvAdPrice;
-        tvAdPrice.setText("Precio: 42708 €");
-
         tvAdReference = binding.tvAdReference;
-        tvAdReference.setText("Referencia: 435859465");
-
         tvAdDescription = binding.tvAdDescription;
-        tvAdDescription.setText("Asturconsa, concesionario oficial kia en asturias.\n" +
-                                "vehículo kia okasion. compromisos: 1) garantía de 3 a 6 años 2) certificado de revisión 105 puntos\n" +
-                                "3)asistencia europea 24 horas 4) financiación especial con kia finance 5) garantía de cambio\n" +
-                                "(14 días/2.000km)  6) inspección gratuita tras 2.000 km o 30 días\n" +
-                                "7) prueba del vehículo sin compromiso.\n" +
-                                "precio todo incluido: iva, transferencia.\n" +
-                                "hacemos entregas en todo el territorio nacional. consultar tarifas.\n" +
-                                "ven a vernos a nuestras instalaciones de oviedo, gijón, avilés, mieres, tapia de casariego y llanes.\n" +
-                                "el precio financiado, además, incluye descuento vinculado a la financiación.\n" +
-                                "la oferta es válida salvo error tipográfico en el precio o en la ficha. \n" +
-                                "imágenes no contractuales.*precio indicado en milanuncios sujeto a financiación");
-
         tvAdLinkPage = binding.tvAdLinkPage;
-        tvAdLinkPage.setText("Ir al anuncio en nuestra web");
-        pageLink = "https://www.milanuncios.com/kia-de-segunda-mano/kia-esoul-435859465.htm";
-
         ivAd = binding.ivAd;
-        Picasso.get().load("https://img.milanuncios.com/fg/4358/59/435859465_1.jpg").into(ivAd);
-        imageLink = "https://img.milanuncios.com/fg/4358/59/435859465_1.jpg";
-
         etAdLocation = binding.etAdLocation;
-        etAdLocation.setText("Asturias");
-
         etAdFuel = binding.etAdFuel;
-        etAdFuel.setText("hybrid");
-
         etAdKm = binding.etAdKm;
-        etAdKm.setText("20");
-
         etAdYear = binding.etAdYear;
-        etAdYear.setText("2021");
-
         etAdTransmission = binding.etAdTransmission;
-        etAdTransmission.setText("Automático");
-
         etAdColor = binding.etAdColor;
-        etAdColor.setText("Gris/Plata");
-
         etAdPower = binding.etAdPower;
-        etAdPower.setText("204");
-
         etAdNumDoors = binding.etAdNumDoors;
-        etAdNumDoors.setText("5");
 
         btLeft = binding.btLeft;
         btRight = binding.btRight;
 
-        defineLeftListener();
-        defineRightListener();
-        defineLinkListener();
     }
 
-    private void defineLinkListener() {
+    /**
+     * Método que define el evento del TextView tvAdLinkPage. Al pulsare en él se abriré una
+     * ventana del navegador con el anunció en cuestión
+     *
+     * @param pageLink El parámetro pageLink contiene la url del anuncio
+     */
+    private void defineLinkListener(String pageLink) {
         tvAdLinkPage.setOnClickListener(view -> {
             Uri uri = Uri.parse(pageLink);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
@@ -123,12 +127,14 @@ public class AdCarFragment extends Fragment {
         });
     }
 
+    /**
+     * Método que define el evento del Button btLeft. Al pulsarlo la imagen del anuncio cambia,
+     * mostrando las anteriores. Si la imagen es cuestión es la primera, se desactiva el botón y se
+     * muestra un Toast en pantalla
+     */
     private void defineLeftListener() {
 
         btLeft.setOnClickListener(view -> {
-
-            char currentNumImg = imageLink.charAt(imageLink.indexOf("_")+1);
-            char numImg = currentNumImg;
 
             if (imageLink.contains("_1.jpg")) {
 
@@ -144,43 +150,32 @@ public class AdCarFragment extends Fragment {
 
                 btLeft.setEnabled(true);
                 btRight.setEnabled(true);
-                numImg--;
-                imageLink = imageLink.replace("_"+currentNumImg+".jpg","_"+numImg+".jpg");
+
+                int newNumImg = numImg - 1;
+
+                imageLink = imageLink.replace("_" + numImg + ".jpg", "_" + newNumImg + ".jpg");
                 Picasso.get().load(imageLink).into(ivAd);
+
+                numImg = newNumImg;
 
             }
 
         });
     }
 
+    /**
+     * Método que define el evento del Button btRight. Al pulsarlo la imagen del anuncio cambia,
+     * mostrando las siguientes. Si la imagen es cuestión es la última, se desactiva el botón y se
+     * muestra un Toast en pantalla
+     */
     private void defineRightListener() {
 
         btRight.setOnClickListener(view -> {
 
-            int totalImgs = 9;
-            char numImg;
-            char currentNumImg;
+            String[] img = images.split(";");
+            int totalImgs = img.length;
 
-            if (totalImgs > 9) {
-
-                char[] aux = new char[2];
-
-                currentNumImg = imageLink.charAt(imageLink.indexOf("_")+1);
-                aux[0] = currentNumImg;
-
-                currentNumImg = imageLink.charAt(imageLink.indexOf("_")+2);
-                aux[1] = currentNumImg;
-
-                numImg = currentNumImg;
-
-            } else {
-
-                currentNumImg = imageLink.charAt(imageLink.indexOf("_")+1);
-                numImg = currentNumImg;
-
-            }
-
-            if (imageLink.contains("_"+totalImgs+".jpg")) {
+            if (imageLink.contains("_" + totalImgs + ".jpg")) {
 
                 btRight.setEnabled(false);
 
@@ -194,9 +189,13 @@ public class AdCarFragment extends Fragment {
 
                 btLeft.setEnabled(true);
                 btRight.setEnabled(true);
-                numImg++;
-                imageLink = imageLink.replace("_"+currentNumImg+".jpg","_"+numImg+".jpg");
+
+                int newNumImg = numImg + 1;
+
+                imageLink = imageLink.replace("_" + numImg + ".jpg", "_" + newNumImg + ".jpg");
                 Picasso.get().load(imageLink).into(ivAd);
+
+                numImg = newNumImg;
 
             }
 
@@ -207,6 +206,86 @@ public class AdCarFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    /**
+     * Método que obtiene los datos de la BD y llena un ArrayList con ellos
+     */
+    @SuppressLint("StaticFieldLeak")
+    public class InfoAsyncTask extends AsyncTask<Void, Void, Map<String, String>> {
+        @Override
+        protected Map<String, String> doInBackground(Void... voids) {
+            Map<String, String> info = new HashMap<>();
+
+            String ad = String.valueOf((Integer) getArguments().getSerializable("idAd"));
+
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+                String sql = "SELECT title, description, reference, price, location, images, linkPage," +
+                        "fuel, km, transmission, color, power, numDoors, year FROM coches LIMIT " + ad + ",1";
+                PreparedStatement statement = connection.prepareStatement(sql);
+                ResultSet resultSet = statement.executeQuery();
+
+                while (resultSet.next()) {
+                    title = resultSet.getString("title");
+                    description = resultSet.getString("description");
+                    reference = resultSet.getString("reference");
+                    price = resultSet.getString("price");
+                    location = resultSet.getString("location");
+                    images = resultSet.getString("images");
+                    linkPage = resultSet.getString("linkPage");
+                    fuel = resultSet.getString("fuel");
+                    km = resultSet.getString("km");
+                    transmission = resultSet.getString("transmission");
+                    color = resultSet.getString("color");
+                    power = resultSet.getString("power");
+                    numDoors = resultSet.getString("numDoors");
+                    year = resultSet.getString("year");
+                }
+
+            } catch (Exception e) {
+                Log.e("InfoAsyncTask", "Error reading school information", e);
+            }
+
+            return info;
+
+        }
+
+
+        @Override
+        protected void onPostExecute(Map<String, String> result) {
+            setAd();
+        }
+    }
+
+    /**
+     * Método que muestra los datos recogidos en el ArrayList, en los componentes del layout.
+     * También se inicializan los eventos de los botones y link del anuncio
+     */
+    public void setAd() {
+
+        tvAdTitle.setText(title);
+        tvAdPrice.setText("Precio: " + price + " €");
+        tvAdReference.setText("Referencia: " + reference);
+        tvAdDescription.setText(getString(R.string.descripcion) + "\n\n" + description);
+        tvAdLinkPage.setText("Ir al anuncio en nuestra web");
+        String[] img = images.split(";");
+        Picasso.get().load(img[0]).into(ivAd);
+        imageLink = img[0];
+        etAdLocation.setText(location);
+        etAdFuel.setText(fuel);
+        etAdKm.setText(km);
+        etAdYear.setText(year);
+        etAdTransmission.setText(transmission);
+        etAdColor.setText(color);
+        etAdPower.setText(power);
+        etAdNumDoors.setText(numDoors);
+
+        defineLeftListener();
+        defineRightListener();
+        defineLinkListener(linkPage);
+
     }
 
 }

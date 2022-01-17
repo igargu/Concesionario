@@ -35,6 +35,22 @@
     <string name="tvAdLinkPage">linkPage</string>
     <string name="tvMainTitle"><u>Concesionario El Cigüeñal</u></string>
     <string name="menuAccount">Mi cuenta</string>
-    <string name="menuSettings">Ajustes</string>
+    <string name="menuAboutUs">Sobre nosotros</string>
     <string name="menuFavs">Favoritos</string>
+    <string name="descripcion"><u>Descripción:</u></string>
+    <string name="tvMenuAccount">¿Aún no tienes cuenta? Créala pulsando en el botón de abajo</string>
+    <string name="btMenuAccount">Crear mi cuenta</string>
+    <string name="contentDescription_ivMenuAccount">Account icon</string>
+    <string name="contentDescription_ivMenuFavs">Empty favorites page icon</string>
+    <string name="tvMenuFavs">Aún no tienes ningún anuncio en tus favoritos</string>
+    <string name="tvAboutUs"><u>Sobre nosotros</u></string>
+    <string name="tvTlfTitle">Teléfono:</string>
+    <string name="tvTlf">958 011 200</string>
+    <string name="tvEmailTitle">Correo electrónico:</string>
+    <string name="tvEmail">info@elcigueñal.es</string>
+    <string name="tvDireccionTitle">Dirección:</string>
+    <string name="tvDireccion">Av. de Asturias, S/N - 27124 Jaén</string>
+    <string name="tvHorarioTitle">Horario de atención:</string>
+    <string name="tvHorario">L - V: 10:00 a 14:00 y 16:30 a 20:30</string>
+    <string name="contentDescription_ivDireccion">ImageView direccion</string>
 </resources>

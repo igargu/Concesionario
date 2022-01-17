@@ -13,8 +13,8 @@
         android:title="@string/menuFavs"
         app:showAsAction="never" />
     <item
-        android:id="@+id/menuSettings"
+        android:id="@+id/menuAboutUs"
         android:orderInCategory="100"
-        android:title="@string/menuSettings"
+        android:title="@string/menuAboutUs"
         app:showAsAction="never" />
 </menu>

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Concesionario">
         <activity
-            android:name=".view.activity.MenuSettingsActivity"
+            android:name=".view.activity.MenuAboutUsActivity"
             android:exported="false" />
         <activity
             android:name=".view.activity.MenuFavsActivity"

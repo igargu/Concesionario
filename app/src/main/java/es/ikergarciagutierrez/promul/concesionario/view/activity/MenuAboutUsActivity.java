@@ -6,11 +6,15 @@ import android.os.Bundle;
 
 import es.ikergarciagutierrez.promul.concesionario.R;
 
-public class MenuSettingsActivity extends AppCompatActivity {
+/**
+ * Clase que define el layout de la opción del menu Sobre nosotros
+ */
+public class MenuAboutUsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_settings);
+        setContentView(R.layout.activity_menu_about_us);
     }
+
 }
