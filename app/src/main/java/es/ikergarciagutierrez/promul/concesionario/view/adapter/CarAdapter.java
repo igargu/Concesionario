@@ -2,11 +2,14 @@ package es.ikergarciagutierrez.promul.concesionario.view.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -64,6 +67,9 @@ public class CarAdapter extends RecyclerView.Adapter<CarViewHolder> implements V
     @NonNull
     @Override
     public CarViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        new InfoAsyncTask().execute();
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_car, parent, false);
         view.setOnClickListener(this);
         return new CarViewHolder(view);
@@ -77,8 +83,6 @@ public class CarAdapter extends RecyclerView.Adapter<CarViewHolder> implements V
      */
     @Override
     public void onBindViewHolder(@NonNull CarViewHolder holder, int position) {
-
-        new InfoAsyncTask().execute();
 
         if (!carList.isEmpty()) {
 
@@ -104,27 +108,12 @@ public class CarAdapter extends RecyclerView.Adapter<CarViewHolder> implements V
 
         } else {
 
-            if (position == 0) {
+            Toast toast = Toast.makeText(context, "Cargando anuncios...", Toast.LENGTH_SHORT);
+            View toastView = toast.getView();
+            toastView.setBackgroundResource(R.color.primary);
+            TextView text = (TextView) toastView.findViewById(android.R.id.message);
+            toast.show();
 
-                holder.tvAdCarTitle.setText("KIA - eSoul");
-                holder.tvAdCarPrice.setText("Precio: 42708 €");
-                Picasso.get().load("https://img.milanuncios.com/fg/4358/59/435859465_1.jpg").into(holder.ivAdCar);
-                holder.etAdCarLocation.setText("Asturias");
-                holder.etAdCarFuel.setText("hybrid");
-                holder.etAdCarKm.setText("20");
-                holder.etAdCarYear.setText("2021");
-
-            } else {
-
-                holder.tvAdCarTitle.setText("KIA - Niro 1.6 GDi HEV 104kW 141CV");
-                holder.tvAdCarPrice.setText("Precio: 25300 €");
-                Picasso.get().load("https://img.milanuncios.com/fg/4358/59/435859467_1.jpg").into(holder.ivAdCar);
-                holder.etAdCarLocation.setText("Asturias");
-                holder.etAdCarFuel.setText("hybrid");
-                holder.etAdCarKm.setText("18700");
-                holder.etAdCarYear.setText("2021");
-
-            }
         }
     }
 
@@ -135,10 +124,11 @@ public class CarAdapter extends RecyclerView.Adapter<CarViewHolder> implements V
      */
     @Override
     public int getItemCount() {
-        if (carList == null) {
-            return 0;
+        if (carList.isEmpty()) {
+            return 5;
         }
-        return 20;
+
+        return carList.size();
     }
 
     /**
