@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 import es.ikergarciagutierrez.promul.concesionario.R;
 
 /**
@@ -21,6 +23,7 @@ public class CarViewHolder extends RecyclerView.ViewHolder {
     public ImageView ivAdCar;
     public TextView tvAdCarTitle, tvAdCarPrice;
     public EditText etAdCarLocation, etAdCarFuel, etAdCarKm, etAdCarYear;
+    public TextInputLayout tilAdCarLocation, tilAdCarFuel, tilAdCarKm, tilAdCarYear;
 
     /**
      * Constructor para definir el item
@@ -33,9 +36,13 @@ public class CarViewHolder extends RecyclerView.ViewHolder {
         tvAdCarTitle = itemView.findViewById(R.id.tvAdCarTitle);
         tvAdCarPrice = itemView.findViewById(R.id.tvAdCarPrice);
         etAdCarLocation = itemView.findViewById(R.id.etAdCarLocation);
+        tilAdCarLocation = itemView.findViewById(R.id.tilAdCarLocation);
         etAdCarFuel = itemView.findViewById(R.id.etAdCarFuel);
+        tilAdCarFuel = itemView.findViewById(R.id.tilAdCarFuel);
         etAdCarKm = itemView.findViewById(R.id.etAdCarKm);
+        tilAdCarKm = itemView.findViewById(R.id.tilAdCarKm);
         etAdCarYear = itemView.findViewById(R.id.etAdCarYear);
+        tilAdCarYear = itemView.findViewById(R.id.tilAdCarYear);
     }
 
 }

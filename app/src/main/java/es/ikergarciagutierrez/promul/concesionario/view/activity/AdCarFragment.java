@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import com.squareup.picasso.Picasso;
@@ -46,11 +47,13 @@ public class AdCarFragment extends Fragment {
     private FragmentAdCarBinding binding;
 
     private TextView tvAdTitle, tvAdPrice, tvAdReference, tvAdDescription, tvAdLinkPage;
-    private ImageView ivAd;
-    private String imageLink;
+    private ImageView ivAd, ivAdZoom;
+    private String imageLink, defaultImg = "https://images.assetsdelivery.com/compings_v2/pavelstasevich/pavelstasevich1811/pavelstasevich181101032.jpg";
     private EditText etAdLocation, etAdFuel, etAdKm, etAdYear,
             etAdTransmission, etAdColor, etAdPower, etAdNumDoors;
-    private Button btLeft, btRight;
+    private Button btLeft, btRight, btCloseImg;
+
+    private ConstraintLayout consLayoImgZoom;
 
     private String title, description, reference, price, location, images = "",
             linkPage, fuel, km, transmission, color, power, numDoors, year;
@@ -99,6 +102,7 @@ public class AdCarFragment extends Fragment {
         tvAdDescription = binding.tvAdDescription;
         tvAdLinkPage = binding.tvAdLinkPage;
         ivAd = binding.ivAd;
+        ivAdZoom = binding.ivAdZoom;
         etAdLocation = binding.etAdLocation;
         etAdFuel = binding.etAdFuel;
         etAdKm = binding.etAdKm;
@@ -110,7 +114,26 @@ public class AdCarFragment extends Fragment {
 
         btLeft = binding.btLeft;
         btRight = binding.btRight;
+        btCloseImg = binding.btCloseImg;
 
+        consLayoImgZoom = binding.consLayoImgZoom;
+
+    }
+
+    private void defineCloseListener() {
+        btCloseImg.setOnClickListener(view -> {
+            consLayoImgZoom.setVisibility(View.INVISIBLE);
+            ivAdZoom.setVisibility(View.INVISIBLE);
+            btCloseImg.setVisibility(View.INVISIBLE);
+        });
+    }
+
+    private void defineImageAdListener() {
+        ivAd.setOnClickListener(view -> {
+            consLayoImgZoom.setVisibility(View.VISIBLE);
+            ivAdZoom.setVisibility(View.VISIBLE);
+            btCloseImg.setVisibility(View.VISIBLE);
+        });
     }
 
     /**
@@ -155,6 +178,7 @@ public class AdCarFragment extends Fragment {
 
                 imageLink = imageLink.replace("_" + numImg + ".jpg", "_" + newNumImg + ".jpg");
                 Picasso.get().load(imageLink).into(ivAd);
+                Picasso.get().load(imageLink).into(ivAdZoom);
 
                 numImg = newNumImg;
 
@@ -194,6 +218,7 @@ public class AdCarFragment extends Fragment {
 
                 imageLink = imageLink.replace("_" + numImg + ".jpg", "_" + newNumImg + ".jpg");
                 Picasso.get().load(imageLink).into(ivAd);
+                Picasso.get().load(imageLink).into(ivAdZoom);
 
                 numImg = newNumImg;
 
@@ -265,26 +290,81 @@ public class AdCarFragment extends Fragment {
      */
     public void setAd() {
 
-        tvAdTitle.setText(title);
-        tvAdPrice.setText("Precio: " + price + " €");
-        tvAdReference.setText("Referencia: " + reference);
-        tvAdDescription.setText(getString(R.string.descripcion) + "\n\n" + description);
-        tvAdLinkPage.setText("Ir al anuncio en nuestra web");
-        String[] img = images.split(";");
-        Picasso.get().load(img[0]).into(ivAd);
-        imageLink = img[0];
-        etAdLocation.setText(location);
-        etAdFuel.setText(fuel);
-        etAdKm.setText(km);
-        etAdYear.setText(year);
-        etAdTransmission.setText(transmission);
-        etAdColor.setText(color);
-        etAdPower.setText(power);
-        etAdNumDoors.setText(numDoors);
+            tvAdTitle.setText(title);
+            tvAdPrice.setText("Precio: " + price + " €");
+            tvAdReference.setText("Referencia: " + reference);
+            tvAdDescription.setText(getString(R.string.descripcion) + "\n\n" + description);
+            tvAdLinkPage.setText("Ir al anuncio en nuestra web");
+            etAdLocation.setText(location);
+            etAdFuel.setText(fuel);
+            etAdKm.setText(km);
+            etAdYear.setText(year);
+            etAdTransmission.setText(transmission);
+            etAdColor.setText(color);
+            etAdPower.setText(power);
+            etAdNumDoors.setText(numDoors);
+
+        if (title.isEmpty()) {
+            tvAdTitle.setVisibility(View.GONE);
+        }
+        if (price.isEmpty()) {
+            tvAdPrice.setVisibility(View.GONE);
+        }
+        if (reference.isEmpty()) {
+            tvAdReference.setVisibility(View.GONE);
+        }
+        if (description.isEmpty()) {
+            tvAdDescription.setVisibility(View.GONE);
+        }
+        if (location.isEmpty()) {
+            etAdLocation.setVisibility(View.GONE);
+            binding.tilAdLocation.setVisibility(View.GONE);
+        }
+        if (fuel.isEmpty()) {
+            etAdFuel.setVisibility(View.GONE);
+            binding.tilAdFuel.setVisibility(View.GONE);
+        }
+        if (km.isEmpty()) {
+            etAdKm.setVisibility(View.GONE);
+            binding.tilAdKm.setVisibility(View.GONE);
+        }
+        if (year.isEmpty()) {
+            etAdYear.setVisibility(View.GONE);
+            binding.tilAdYear.setVisibility(View.GONE);
+        }
+        if (transmission.isEmpty()) {
+            etAdTransmission.setVisibility(View.GONE);
+            binding.tilAdTransmission.setVisibility(View.GONE);
+        }
+        if (color.isEmpty()) {
+            etAdColor.setVisibility(View.GONE);
+            binding.tilAdColor.setVisibility(View.GONE);
+        }
+        if (power.isEmpty()) {
+            etAdPower.setVisibility(View.GONE);
+            binding.tilAdPower.setVisibility(View.GONE);
+        }
+        if (numDoors.isEmpty()) {
+            etAdNumDoors.setVisibility(View.GONE);
+            binding.tilAdNumDoors.setVisibility(View.GONE);
+        }
+        if (images.isEmpty()) {
+            Picasso.get().load(defaultImg).into(ivAd);
+            Picasso.get().load(defaultImg).into(ivAdZoom);
+            btLeft.setEnabled(false);
+            btRight.setEnabled(false);
+        } else {
+            String[] img = images.split(";");
+            Picasso.get().load(img[0]).into(ivAd);
+            Picasso.get().load(img[0]).into(ivAdZoom);
+            imageLink = img[0];
+        }
 
         defineLeftListener();
         defineRightListener();
         defineLinkListener(linkPage);
+        defineImageAdListener();
+        defineCloseListener();
 
     }
 

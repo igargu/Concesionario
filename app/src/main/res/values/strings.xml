@@ -53,4 +53,6 @@
     <string name="tvHorarioTitle">Horario de atención:</string>
     <string name="tvHorario">L - V: 10:00 a 14:00 y 16:30 a 20:30</string>
     <string name="contentDescription_ivDireccion">ImageView direccion</string>
+    <string name="contentDescription_ivAdZoom">ivAdZoom</string>
+    <string name="contentDescription_ivLogoConcesionario">ivLogoConcesionario</string>
 </resources>

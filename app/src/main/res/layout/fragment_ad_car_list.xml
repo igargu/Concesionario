@@ -7,15 +7,13 @@
     tools:context=".view.activity.AdCarListFragment"
     android:background="@color/secondary">
 
-    <TextView
-        android:id="@+id/tvMainTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:gravity="center"
-        android:text="@string/tvMainTitle"
-        android:textColor="@color/white"
-        android:textSize="34sp"
+    <ImageView
+        android:id="@+id/ivLogoConcesionarioList"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:contentDescription="@string/contentDescription_ivLogoConcesionario"
+        android:scaleType="centerCrop"
+        android:src="@drawable/iv_logo_concesionario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,12 +22,11 @@
         android:id="@+id/rvCar"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="3dp"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMainTitle"
+        app:layout_constraintTop_toBottomOf="@+id/ivLogoConcesionarioList"
         tools:listitem="@layout/item_car" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

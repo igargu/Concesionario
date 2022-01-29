@@ -43,6 +43,8 @@ public class CarAdapter extends RecyclerView.Adapter<CarViewHolder> implements V
     private String title, description, reference, price, location, images,
             linkPage, fuel, km, transmission, color, power, numDoors, year;
 
+    private String defaultImg = "https://images.assetsdelivery.com/compings_v2/pavelstasevich/pavelstasevich1811/pavelstasevich181101032.jpg";
+
     private ArrayList<String> carList = new ArrayList<>();
     private Context context;
 
@@ -86,25 +88,52 @@ public class CarAdapter extends RecyclerView.Adapter<CarViewHolder> implements V
 
         if (!carList.isEmpty()) {
 
-            String carAdDetail = carList.get(position);
-            String[] carAdDetails = carAdDetail.split("=");
+                String carAdDetail = carList.get(position);
+                String[] carAdDetails = carAdDetail.split("=");
 
-            title = carAdDetails[0];
-            price = "Precio: " + carAdDetails[3] + " €";
-            location = carAdDetails[4];
-            fuel = carAdDetails[7];
-            km = carAdDetails[8];
-            year = carAdDetails[13];
-            images = carAdDetails[5];
+                title = carAdDetails[0];
+                price = carAdDetails[3];
+                location = carAdDetails[4];
+                fuel = carAdDetails[7];
+                km = carAdDetails[8];
+                year = carAdDetails[13];
+                images = carAdDetails[5];
 
-            holder.tvAdCarTitle.setText(title);
-            holder.tvAdCarPrice.setText(price);
-            holder.etAdCarLocation.setText(location);
-            holder.etAdCarFuel.setText(fuel);
-            holder.etAdCarKm.setText(km);
-            holder.etAdCarYear.setText(year);
-            String[] img = images.split(";");
-            Picasso.get().load(img[0]).into(holder.ivAdCar);
+                holder.tvAdCarTitle.setText(title);
+                holder.tvAdCarPrice.setText("Precio: " + price + " €");
+                holder.etAdCarLocation.setText(location);
+                holder.etAdCarFuel.setText(fuel);
+                holder.etAdCarKm.setText(km);
+                holder.etAdCarYear.setText(year);
+
+            if (title.isEmpty()) {
+                holder.tvAdCarTitle.setVisibility(View.GONE);
+            }
+            if (price.isEmpty()) {
+                holder.tvAdCarPrice.setVisibility(View.GONE);
+            }
+            if (location.isEmpty()) {
+                holder.etAdCarLocation.setVisibility(View.GONE);
+                holder.tilAdCarLocation.setVisibility(View.GONE);
+            }
+            if (fuel.isEmpty()) {
+                holder.etAdCarFuel.setVisibility(View.GONE);
+                holder.tilAdCarFuel.setVisibility(View.GONE);
+            }
+            if (km.isEmpty()) {
+                holder.etAdCarKm.setVisibility(View.GONE);
+                holder.tilAdCarKm.setVisibility(View.GONE);
+            }
+            if (year.isEmpty()) {
+                holder.etAdCarYear.setVisibility(View.GONE);
+                holder.tilAdCarYear.setVisibility(View.GONE);
+            }
+            if (images.isEmpty()) {
+                Picasso.get().load(defaultImg).into(holder.ivAdCar);
+            } else {
+                String[] img = images.split(";");
+                Picasso.get().load(img[0]).into(holder.ivAdCar);
+            }
 
         } else {
 
