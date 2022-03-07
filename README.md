@@ -1,6 +1,6 @@
 # Concesionario #
 
-Esta aplicación obtiene datos de una página web de venta de coches mediante una araña escrita en lenguaje PHP. Los datos obtenidos son insertados en una base de datos y mostrados en la aplicación usando un RecyclerView. Los datos que guardamos de cada coche son: 
+Esta aplicación obtiene datos de una página web de venta de coches mediante una araña escrita en lenguaje PHP [concesionario_spider.php](https://github.com/Iker-hub/Concesionario/blob/master/concesionario_spider.php). Los datos obtenidos son insertados en una base de datos y mostrados en la aplicación usando un RecyclerView. Los datos que guardamos de cada coche son: 
 
   * Nombre.
   * Descripción.
@@ -11,11 +11,13 @@ Esta aplicación obtiene datos de una página web de venta de coches mediante un
   * URL a la página web de venta.
   * Combustible.
   * Kilómetros.
-  * Cambio.
+  * Tipo de transmisión.
   * Color.
   * Potencia.
   * Número de puertas.
   * Año.
+  
+Podemos consultar la información en detalle de cada anuncio pulsando en los diferentes items del RecyclerView.
  
 ## Layout de la lista de coches ##
 
