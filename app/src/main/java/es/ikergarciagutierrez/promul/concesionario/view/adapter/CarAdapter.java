@@ -2,6 +2,7 @@ package es.ikergarciagutierrez.promul.concesionario.view.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -136,13 +137,12 @@ public class CarAdapter extends RecyclerView.Adapter<CarViewHolder> implements V
             }
 
         } else {
-
             Toast toast = Toast.makeText(context, "Cargando anuncios...", Toast.LENGTH_SHORT);
             View toastView = toast.getView();
-            toastView.setBackgroundResource(R.color.primary);
-            TextView text = (TextView) toastView.findViewById(android.R.id.message);
+            toastView.getBackground().setColorFilter(context.getResources().getColor(R.color.primary), PorterDuff.Mode.SRC_IN);
+            TextView tv = (TextView) toast.getView().findViewById(android.R.id.message);
+            tv.setTextColor(Color.WHITE);
             toast.show();
-
         }
     }
 

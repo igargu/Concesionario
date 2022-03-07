@@ -2,6 +2,7 @@ package es.ikergarciagutierrez.promul.concesionario.view.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -73,10 +74,8 @@ public class AdCarFragment extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-
         binding = FragmentAdCarBinding.inflate(inflater, container, false);
         return binding.getRoot();
-
     }
 
     /**
@@ -165,8 +164,9 @@ public class AdCarFragment extends Fragment {
 
                 Toast toast = Toast.makeText(getContext(), "No hay más imágenes", Toast.LENGTH_SHORT);
                 View toastView = toast.getView();
-                toastView.getBackground().setColorFilter(getResources().getColor(R.color.primary), PorterDuff.Mode.SRC_IN);
-                TextView text = (TextView) view.findViewById(android.R.id.message);
+                toastView.getBackground().setColorFilter(getContext().getResources().getColor(R.color.primary), PorterDuff.Mode.SRC_IN);
+                TextView tv = (TextView) toast.getView().findViewById(android.R.id.message);
+                tv.setTextColor(Color.WHITE);
                 toast.show();
 
             } else {
@@ -205,8 +205,9 @@ public class AdCarFragment extends Fragment {
 
                 Toast toast = Toast.makeText(getContext(), "No hay más imágenes", Toast.LENGTH_SHORT);
                 View toastView = toast.getView();
-                toastView.getBackground().setColorFilter(getResources().getColor(R.color.primary), PorterDuff.Mode.SRC_IN);
-                TextView text = (TextView) view.findViewById(android.R.id.message);
+                toastView.getBackground().setColorFilter(getContext().getResources().getColor(R.color.primary), PorterDuff.Mode.SRC_IN);
+                TextView tv = (TextView) toast.getView().findViewById(android.R.id.message);
+                tv.setTextColor(Color.WHITE);
                 toast.show();
 
             } else {
