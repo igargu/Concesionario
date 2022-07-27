@@ -161,13 +161,7 @@ public class AdCarFragment extends Fragment {
             if (imageLink.contains("_1.jpg")) {
 
                 btLeft.setEnabled(false);
-
-                Toast toast = Toast.makeText(getContext(), "No hay más imágenes", Toast.LENGTH_SHORT);
-                View toastView = toast.getView();
-                toastView.getBackground().setColorFilter(getContext().getResources().getColor(R.color.primary), PorterDuff.Mode.SRC_IN);
-                TextView tv = (TextView) toast.getView().findViewById(android.R.id.message);
-                tv.setTextColor(Color.WHITE);
-                toast.show();
+                showToast("No hay más imágenes");
 
             } else {
 
@@ -202,13 +196,7 @@ public class AdCarFragment extends Fragment {
             if (imageLink.contains("_" + totalImgs + ".jpg")) {
 
                 btRight.setEnabled(false);
-
-                Toast toast = Toast.makeText(getContext(), "No hay más imágenes", Toast.LENGTH_SHORT);
-                View toastView = toast.getView();
-                toastView.getBackground().setColorFilter(getContext().getResources().getColor(R.color.primary), PorterDuff.Mode.SRC_IN);
-                TextView tv = (TextView) toast.getView().findViewById(android.R.id.message);
-                tv.setTextColor(Color.WHITE);
-                toast.show();
+                showToast("No hay más imágenes");
 
             } else {
 
@@ -367,6 +355,20 @@ public class AdCarFragment extends Fragment {
         defineImageAdListener();
         defineCloseListener();
 
+    }
+
+    /**
+     * Método que muestra un Toast personalizado
+     *
+     * @param message Mensaje que queremos que aparezca en el Toast
+     */
+    private void showToast(String message) {
+        Toast toast = new Toast(getContext());
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.toast_layout, null);
+        TextView tvToast = view.findViewById(R.id.tvMessage);
+        tvToast.setText(message);
+        toast.setView(view);
+        toast.show();
     }
 
 }
