@@ -137,12 +137,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarViewHolder> implements V
             }
 
         } else {
-            Toast toast = Toast.makeText(context, "Cargando anuncios...", Toast.LENGTH_SHORT);
-            View toastView = toast.getView();
-            toastView.getBackground().setColorFilter(context.getResources().getColor(R.color.primary), PorterDuff.Mode.SRC_IN);
-            TextView tv = (TextView) toast.getView().findViewById(android.R.id.message);
-            tv.setTextColor(Color.WHITE);
-            toast.show();
+            showToast("Cargando anuncios...");
         }
     }
 
@@ -217,6 +212,20 @@ public class CarAdapter extends RecyclerView.Adapter<CarViewHolder> implements V
         protected void onPostExecute(Map<String, String> result) {
 
         }
+    }
+
+    /**
+     * Método que muestra un Toast personalizado
+     *
+     * @param message Mensaje que queremos que aparezca en el Toast
+     */
+    private void showToast(String message) {
+        Toast toast = new Toast(context);
+        View view = LayoutInflater.from(context).inflate(R.layout.toast_layout, null);
+        TextView tvToast = view.findViewById(R.id.tvMessage);
+        tvToast.setText(message);
+        toast.setView(view);
+        toast.show();
     }
 
 }
